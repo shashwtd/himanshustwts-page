@@ -13,12 +13,6 @@ interface PostData {
   [key: string]: any;
 }
 
-interface SearchablePost extends PostData {
-  title?: string;
-  description?: string;
-  tags?: string[];
-}
-
 const posts = await Astro.glob('../../posts/**/*.mdx');
 const postData: PostData[] = posts.map((post): PostData => {
   const relativePath = path.relative(path.resolve('src/posts'), post.file);
