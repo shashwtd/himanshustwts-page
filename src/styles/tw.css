@@ -72,7 +72,7 @@ html.dark .astro-code span {
 }
 
 .astro-code {
-  @apply my-4 p-2 font-code text-sm;
+  @apply my-4 p-2 font-code text-sm dark:border-gruvbox-dark-bg-lighter border-gruvbox-light-bg-lighter border-2;
 }
 
 .markdown-content hr {
@@ -90,8 +90,17 @@ html.dark .astro-code span {
   @apply border-l-2 dark:border-l-gruvbox-dark-accent border-l-gruvbox-light-accent pl-2 my-5 italic;
 }
 
+.markdown-content .astro-code {
+  @apply overflow-x-auto;
+
+}
+
+.katex-display {
+  @apply overflow-x-auto overflow-y-hidden;
+}
+
 .markdown-content a {
-  @apply text-gruvbox-light-accent dark:text-gruvbox-dark-accent dark:hover:text-gruvbox-dark-accent/80 hover:text-gruvbox-light-accent/80 transition-colors underline underline-offset-4;
+  @apply break-all text-gruvbox-light-accent dark:text-gruvbox-dark-accent dark:hover:text-gruvbox-dark-accent/80 hover:text-gruvbox-light-accent/80 transition-colors underline underline-offset-4;
 }
 
 .callout-info {
