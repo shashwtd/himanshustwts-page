@@ -1,0 +1,183 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* using gruvbox light HARD and gruvbox dark HARD themes */
+
+@theme {
+  --font-title: "EB Garamond", serif;
+  --font-text: "EB Garamond", serif;
+  --font-code: "Geist Mono", monospace;
+
+  --color-gruvbox-light-bg: #f9f5d7;
+  --color-gruvbox-light-bg-alt: #f2e5bc;
+  --color-gruvbox-light-bg-lighter: #ada384;
+  --color-gruvbox-light-accent: #427b58;
+  --color-gruvbox-light-danger: #9d0006;
+  --color-gruvbox-light-warning: #b57614;
+  --color-gruvbox-light: #3c3836;
+
+  --color-gruvbox-dark-bg: #1d2021;
+  --color-gruvbox-dark-bg-alt: #282828;
+  --color-gruvbox-dark-bg-lighter: #504945;
+  --color-gruvbox-dark-accent: #8ec07c;
+  --color-gruvbox-dark-danger: #fb4934;
+  --color-gruvbox-dark-warning: #fabd2f;
+  --color-gruvbox-dark: #ebdbb2;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html {
+  @apply leading-6;
+}
+
+html.dark .astro-code,
+html.dark .astro-code span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+}
+
+.astro-code code span span {
+  font-family: "Geist Mono", monospace !important;
+}
+
+* {
+  @apply font-text;
+}
+
+.markdown-content h1 {
+  @apply text-2xl md:text-3xl font-bold my-2 font-title;
+}
+
+.markdown-content h2 {
+  @apply text-xl md:text-2xl font-bold my-2 font-title;
+}
+
+.markdown-content h3 {
+  @apply text-lg md:text-xl font-bold my-2 font-title;
+}
+
+.markdown-content h4 {
+  @apply text-lg md:text-xl my-2 font-title;
+}
+
+.markdown-content code {
+  @apply font-code text-xs px-1;
+}
+
+.markdown-content img {
+  @apply max-w-full h-auto my-3 font-title;
+}
+
+.astro-code {
+  @apply my-4 p-2 font-code text-sm;
+}
+
+.markdown-content hr {
+  @apply my-6;
+}
+
+
+.markdown-content br {
+  display: block;
+  content: "";
+  margin: 24px 0;
+}
+
+.markdown-content blockquote {
+  @apply border-l-2 dark:border-l-gruvbox-dark-accent border-l-gruvbox-light-accent pl-2 my-5 italic;
+}
+
+.markdown-content a {
+  @apply text-gruvbox-light-accent dark:text-gruvbox-dark-accent dark:hover:text-gruvbox-dark-accent/80 hover:text-gruvbox-light-accent/80 transition-colors underline underline-offset-4;
+}
+
+.callout-info {
+  @apply bg-gruvbox-light-accent/30 dark:bg-gruvbox-dark-accent/30 border-2 border-gruvbox-light-accent dark:border-gruvbox-dark-accent p-2 my-3;
+}
+
+.callout-warning {
+  @apply bg-gruvbox-light-warning/30 dark:bg-gruvbox-dark-warning/30 border-2 border-gruvbox-light-warning dark:border-gruvbox-dark-warning p-2 my-3;
+}
+
+.callout-danger {
+  @apply bg-gruvbox-light-danger/30 dark:bg-gruvbox-dark-danger/30 border-2 border-gruvbox-light-danger dark:border-gruvbox-dark-danger p-2 my-3;
+}
+
+ul {
+  @apply list-disc pl-5 my-3;
+}
+
+ol {
+  @apply list-decimal pl-5 my-3;
+}
+
+
+.timeline-container {
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 50px;
+}
+
+.timeline-item {
+  position: relative;
+}
+
+.timeline-dot {
+  width: 30px;
+  height: 2px;
+  border-radius: 1px;
+  transition: width 0.2s, background-color 0.2s;
+}
+
+.timeline-item:hover .timeline-dot {
+  width: 40px;
+}
+
+.timeline-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 8px;
+}
+
+.timeline-item.active .timeline-dot {
+  width: 50px;
+  border-radius: 2px;
+}
+
+.timeline-item.active .timeline-dot {
+  background-color: var(--color-gruvbox-light-accent);
+}
+
+.dark .timeline-item.active .timeline-dot {
+  background-color: var(--color-gruvbox-dark-accent);
+}
+
+.timeline-text {
+  position: absolute;
+  right: 70px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 5px;
+  display: none;
+  white-space: nowrap;
+}
+
+.timeline-item:hover .timeline-text {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .timeline-container {
+    display: none;
+  }
+}

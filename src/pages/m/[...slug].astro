@@ -1,0 +1,41 @@
+---
+const { slug } = Astro.params;
+
+export const mediumarticles = [
+  {
+    slug: "my-ml-internship-interview-experience-at-an-us-based-startup-selected",
+    title: "My ML Internship Interview Experience at an US-based Startup (Selected)",
+    date: "14 Oct 2024",
+    description: "Sharing my experience of the ML internship interview process at a US-based startup, including the challenges faced and how I overcame them.",
+    tags: ["ml", "talks", "medium"],
+    redirect: "https://medium.com/@himanshusarticles/my-ml-internship-interview-experience-at-an-us-based-startup-selected-56a5ff7fa046"
+  },
+  {
+    slug: "my-internship-interview-experience-at-trust-lab-iit-bombay-selected",
+    title: "My Internship Interview Experience at Trust Lab, IIT Bombay (Selected)",
+    date: "May 28 2024",
+    tags: ["ml", "talks", "medium"],
+    redirect: "https://medium.com/@himanshusarticles/my-internship-interview-experience-at-trust-lab-iit-bombay-selected-8d1ca0ccf1df"
+  },
+  {
+    slug: "research-internship-at-iits-nits-iiits-and-other-top-research-institutes",
+    title: "Research Internship at IITs, NITs, IIITs and other Top Research Institutes",
+    date: "May 12 2024",
+    tags: ["ml", "talks","medium"],
+    redirect: "https://medium.com/@himanshusarticles/research-internship-at-iits-nits-iiits-and-other-top-research-institutes-fd7e567f71e0"
+  }
+]
+
+export async function getStaticPaths() {
+  return mediumarticles.map((post) => ({
+    params: { slug: post.slug },
+  }));
+}
+
+const matchedPost = mediumarticles.find(post => post.slug === slug);
+
+// Redirect if found
+if (matchedPost && matchedPost.redirect) {
+  return Astro.redirect(matchedPost.redirect);
+}
+---

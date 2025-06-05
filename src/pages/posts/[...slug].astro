@@ -1,0 +1,60 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import type { GetStaticPaths } from 'astro';
+import path from 'path';
+
+interface PostProps {
+  post: {
+    Content: any;
+    frontmatter: {
+      title: string;
+      date?: string;
+      [key: string]: any;
+    };
+    file: string;
+  };
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const posts = await Astro.glob('../../posts/**/*.mdx');
+  
+  return posts.map((post) => {
+    const relativePath = path.relative(path.resolve('src/posts'), post.file);
+    const slug = relativePath.replace('.mdx', '').replace(/\\/g, '/');
+    
+    return {
+      params: { slug },
+      props: { post }
+    };
+  });
+};
+
+const { slug } = Astro.params;
+const { post }: PostProps = Astro.props;
+const { Content, frontmatter } = post;
+---
+
+<Layout title={frontmatter.title}>
+  <h1 class="text-3xl font-bold mb-4">{frontmatter.title}</h1>
+  {
+    frontmatter.tags && frontmatter.tags.length > 0 && (
+      <div class="tags mb-4">
+        {frontmatter.tags.map((tag: string) => (
+          <span class="tag dark:bg-gruvbox-dark-accent/10 dark:text-gruvbox-dark-accent bg-gruvbox-light-accent/10 font-code! text-xs text-gruvbox-light-accent px-3 py-1 mr-2">
+            {tag}
+          </span>
+        ))}
+      </div>
+    )
+  }
+  <div class="markdown-content break-keep">
+    <Content />
+  </div>
+  <div class="mt-8 w-full flex justify-end">
+    <div class="flex-col flex">
+    <p>- himanshu</p>
+    <p class="">{frontmatter.date}</p>
+    </div>
+
+  </div>
+</Layout>

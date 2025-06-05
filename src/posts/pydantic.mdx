@@ -1,0 +1,148 @@
+---
+title: Introducing pydantic - data saviour
+date: 6 Sep 2024
+tags: [python]
+---
+import Callout from "../components/Callout.astro"
+
+hello! hope you're doing good. a very happy teacher's day as well to all teachers out there. context of writing on Pydantic is similar to last blog. if you didn't checkout it yet, read it [here](/posts/spell-check).
+
+last night, my team was discussing about how to bring json serialization in our model (it's complex one) and incorporates external APIs. i just looked into JSON mode (supported in chat completion APIs) and found "pydantic" there.
+
+let's discuss about problem first.
+as you all know python lacks static typing (type of variables aren't declared unlike java or c).
+
+```python
+x = 10
+```
+
+and now in java 
+
+```java 
+int x = 10;
+```
+
+we can infer python overwrites variables as well from here. meaning, if 4 (int) is assigned to a variable x, we can also assign "four" (string) to x. basically, 4 got overwritten by "four".
+
+it may look easier as we get started but cause a lots of problem later on.
+
+as the application get bigger it becomes harder to keep track of all variables and what type they should be.
+
+let's discuss an example code-
+
+```python
+smith = Person("smith", 24)
+smith = Person("smith, "24")
+```
+
+the biggest downside with this approach is it allows us to create invalid objects.
+here, when we try to use the "age" variable as a number it will fail (now it is assigned as string).
+also, it becomes quite hard to debug in a large codebase.
+
+Python has a lot of tools already to solve this kind of problem like dataclass, type-hinting etc.
+
+First, we're going to look over pydantic then we'll compare with existing tools.
+what pydantic is?
+in most simpler terms, it is data validation library in python. You may find using pydantic in top python libraries like huggingface/transformer, fastapi, langchain, airflow etc.
+It has varied benefits:
+
+- ide type hints 
+- data validation
+- json serialization
+
+how to use pydantic?
+
+```bash
+pip install pydantic
+```
+
+- pydantic uses BaseModel for creating pydantic models (see the code below). Here User is a class that inherits from BaseModel class. in User class, we define fields of model as class variables
+- we can use Data Validation feature by pydantic to validate type of variables. in User class, we define name: Str, if we create an instance user1 with name: 2, this will output a validation error.
+- EmailStr is used to validate email.
+- in pydantic, we can create Custom Validations. what are custom validations? if none of in-built validation types cover the requirements we need, we add custom validation logic to the model. here, let the logic be "all account_id" must be positive integers. we'll add validator decorator from pydantic to our class.
+- pydantic has **JSON Serialization** feature. It is used in converting pydantic models to JSON and vice-versa. while converting pydantic model to JSON, we call JSON method on model instance. This will return JSON string representation of model's data.
+
+```python
+from pydantic import BaseModel, EmailStr, validator
+
+class User(BaseModel):
+    name: str
+    email: EmailStr
+    account_id: int
+
+    # Data Validation
+    @validator("account_id")
+    def validate_account_id(cls, value):
+     if value<=0:
+        raise ValueError(f"account_id must be positive: {value}")
+     return value
+
+
+
+#creating instance of the model
+user1 = User(
+    name="himanshu",
+    email="hdubey261102@gmail.com",
+    account_id= 20211234
+)
+print(user1)
+
+user2 = User(name="xyz", email="abc@gmail.com", account_id=2345)
+print(user2.email)
+
+#this will be invalid, account_id = int -> str
+user2 = User(name="abc", email="pqr@gmail.com", account_id= "12346")
+print(user2)
+
+# JSON Serialization
+# to convert pydantic models to JSON, we can call JSON method on the model instance.
+# this will return a JSON string representation of model's data
+
+user_json_str = user1.json()
+print(user_json_str)
+
+# if you don't want json string but plane python dictionary
+user_json_obj = user1.dict()
+print(user_json_obj)
+
+# if you've json string and want to convertit back into pydantic model
+json_str = {"name":"xyz","email":"abc@gmail.com","account_id":2345}
+user3 = User.model_validate(json_str)
+print(user3)
+```
+
+let's compare pydantic with dataclass.
+
+- dataclass is actually a built-in module that solves similar problem as pydantic except of extending from a BaseModel class, we use `@dataclass` decorator instead. here is the code below
+
+```python
+@dataclass
+class myProduct:
+    name: str
+    price: float
+    in_stock: bool
+
+product1 = Product("PS5", 70K, True)
+```
+
+- dataclass is lightweight (built-in module).
+- dataclass requires additional steps or libraries for JSON serialization/deserialization, making the process less straightforward.
+
+```python
+import json
+
+product1_dict = asdict(product1)
+product1_json = json.dumps(product1_dict)
+new_product1_dict = json.loads(product1_json)
+new_product1 = Product(**new_product1_dict)
+```
+
+- if we have a complex data model, need a lot of JSON Serialization and has a lot of external APIs we will go with pydantic. i guess this makes sense now.\
+
+this is all about pydantic in brief. refer official doc for further use cases.
+
+<Callout type="info" title="Documentation">
+You can visit the documentation of pydantic [here](https://docs.pydantic.dev/latest/).
+</Callout>
+
+cyaa :)

@@ -1,0 +1,101 @@
+---
+title: Decoding Spell Chckers
+tags: [python, cp]
+date: 12 Aug 2024
+---
+
+you might wonder how this idea came to me to write a blog on this. so, my team was having a discussion on how to execute post-processing of OCR text, and the idea of spell checkers suddenly dropped. i looked into pyspellchecker and thought to dive deep into this. without further ado, here we go!
+
+<br/>
+
+while typing a text chat to someone, often we do spell errors. (i do a lot) let the text be, "it is sill raining bro". here sill is misspelled. it may give plausible suggestions like, did you mean: "still", "ill", "till". words considered plausible are those with an edit distance of one.
+this program was actually published in 1971 by Ralph but actually this has a problem. probably, you've guessed it. not all spelling errors would've only one edit distance. if i write 'spetlin" it has edit distance of 2, replacing 't' with 'l' and adding 'g' to make it "spelling".
+
+the difference could be:
+
+1. single letter insertion ("still")
+2. single letter deletion ("ill")
+3. substitution of one letter with another ("till")
+
+so what? we needed to find a way to calculate plausible words beyond one edit distance. but how do even quantify edit distance? in 1965, Lenin has already published his famous Levensthein Distance Algorithm. It wasn't actually designed for spellcheckers but later this algorithm find a huge use case for same.
+
+<br/>
+
+Let's dive deep into Levensthein Distance Algorithm first, by finding edit distance between two words. let the words be "map" and "bat", with intuition the edit comes out to be 2(m:b, p:t). as Ralph's program, in this case as well we can opt for 3 operations: insertions, deletions and substitution.
+
+let's prove this with LD Algorithm, The Levensthein distance between two strings a, b (of length |a| and |b|) is given by lev(a, b). Look the cases we are defining carefully,
+
+1. lev(map, bat) = |map| if |bat| = 0
+2. lev(map, bat) = |bat| if |map| = 0
+3. lev(map, bat) = lev(tail(map), tail(bat)) if head(map) = head(bat) i.e. if first letter of two words are same.
+
+so we have gone through all the edge cases and it is sure now a move must must be performed after this. edit distance (ED = 1)
+
+we have three possible routes we can take:
+min \{lev(ap, can) -> insert , lev(map, at) -> delete, lev(ap, at) -> substitute}
+
+we don't actually know which of this is best route, we run all of them recursively and choose the route that returns smallest edit distance. we are calling the function recursively three times in every iteration.
+the TC comes out to be O(3^n). very inefficient, right!!
+
+if you see, this was purely a mathematical concept and wasn't designed to solve a software problem. hence, it is not a practical algorithm to implement it practically.
+
+now, around 1974 there comes an interesting MIT research which introduced a ground breaking solution to the inefficiency LD algorithm. Guess what, the solution was Dynamic Programming!!
+
+(DP: breaking down a complex problem into sub-problems and solving each of these sub-problems just once and storing the solutions. so the algorithm avoid excessive repetitive work as seen in LD recursive approach).
+
+with the new approach, let's find the edit distance between "goat" and "pole". we will build a matrix and find the edit distance between substrings and build calculations as we go. remember, the operations will remain the same.
+
+following is the pseudocode of the same.
+
+```python
+# create a 2D DP table with (m+1) rows and (n+1) columns
+dp = array[m+1][n+1]
+
+# initialize the base cases
+for i from 0 to m:
+    dp[i][0] = i  # Cost of converting str1[0:i] to an empty string
+for j from 0 to n:
+    dp[0][j] = j  # Cost of converting an empty string to str2[0:j]
+
+# Fill the DP table
+for i from 1 to m:
+    for j from 1 to n:
+        if str1[i-1] == str2[j-1]:
+            # If characters are the same, no additional cost
+            dp[i][j] = dp[i-1][j-1]
+        else:
+            # calculate the cost of each operation and take the minimum
+            cost_delete = dp[i-1][j] + 1    # Deletion
+            cost_insert = dp[i][j-1] + 1    # Insertion
+            cost_replace = dp[i-1][j-1] + 1 # Substitution
+            dp[i][j] = min(cost_delete, cost_insert, cost_replace)
+
+# the edit distance is found in dp[m][n]
+return dp[m][n]
+```
+
+explanation:
+
+1. initialization The first row and column are initialized to represent converting a substring to or from an empty string. For example, dp[i][0] represents the cost of deleting all characters from str1[0:i] to get an empty string, and dp[0][j] represents the cost of inserting all characters from str2[0:j] into an empty string
+2. filling the DP table
+
+- for each pair of indices (i, j) in the strings str1 and str2, the algorithm checks if the characters at those indices are the same.
+- if they are the same, no operation is needed, so dp[i][j] = dp[i-1][j-1].
+- if they are different, the algorithm considers the minimum cost of three possible operations: deletion, insertion, and substitution.
+
+3. final result: The value at dp[m][n] gives the minimum number of operations needed to transform str1 into str2.
+
+in our case, the edit distance between "goat" and "pole" is the value in dp[4][4], which is 3.
+
+<br/>
+
+though there are more optimizations possible with this approach as well, like maybe don't compute edit distance immediately. check if the word exists in the dictionary to see if it is spelled correctly first before computing it's edit distance to other words.
+
+we are very close to wrap up this blog. actually spell checkers went really far from here. nowadays, we incorporate NLP to understand context of the sentence in order to suggest more appropriate word corrections.
+
+it's too late (4:28 am now), i haven't guessed this will be a long post. i'll upload the python code of above approaches by eve today. you may try out coding yourself, pseudocode being given.
+
+<br/>
+
+i've used spell checker at least 50 times while writing this blog. so yeah, it feel i'd learnt and covered a cool thing.
+will be posting another blog very soon!
