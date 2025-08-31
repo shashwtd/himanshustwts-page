@@ -1,9 +1,129 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const { Content, frontmatter } = await import('../content/index.mdx');
+import Section from "../components/Section.astro";
+
+const title = "Welcome!";
 ---
-<Layout title={frontmatter.title}>
-			<div class="markdown-content">
-				<Content />
-			</div>
+<Layout title={title}>
+  <div class="space-y-16 max-w-3xl">
+    {/* Header Section */}
+    <div class="space-y-8">
+      <div class="flex flex-col items-end text-right">
+        <h1 class="text-5xl font-bold mb-2">himanshu</h1>
+        <p class="text-lg text-gruvbox-light-bg-lighter dark:text-gruvbox-dark-bg-lighter">
+          cooking in da lab with <a href="https://bhindi.io" class="hover:text-gruvbox-light-accent dark:hover:text-gruvbox-dark-accent transition-colors">@bhindi</a>
+        </p>
+      </div>
+
+      <p class="text-xl leading-relaxed">
+        nice to meet you!! i'm himanshu, just passed out my engineering course in IT. this is my little corner of the internet :)
+      </p>
+
+      <div class="flex flex-wrap justify-end gap-4 text-sm">
+        <a 
+          href="https://twitter.com/himanshustwts"
+          class="inline-flex items-center gap-2 text-gruvbox-light-accent dark:text-gruvbox-dark-accent hover:opacity-80 transition-opacity"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg class="w-4 h-4" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+          <span>@himanshustwts</span>
+        </a>
+        <a 
+          href="https://www.youtube.com/@GroundZeroAI"
+          class="inline-flex items-center gap-2 text-gruvbox-light-accent dark:text-gruvbox-dark-accent hover:opacity-80 transition-opacity"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg class="w-4 h-4" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+          <span>GroundZeroAI</span>
+        </a>
+      </div>
+    </div>
+
+    {/* Work Experience */}
+    <Section title="what i do">
+      <div class="space-y-6">
+        <p class="text-lg">
+          Currently building and iterating at the intersection of AI and real-world challenges at <a href="https://bhindi.io" class="text-gruvbox-light-accent dark:text-gruvbox-dark-accent hover:underline">bhindi.io</a>, where we're developing your cursor for apps.
+        </p>
+        <div class="space-y-4">
+          <div class="space-y-2">
+            <h3 class="font-medium">Machine Learning Intern</h3>
+            <p class="text-gruvbox-light-bg-lighter dark:text-gruvbox-dark-bg-lighter text-sm">[14-10-2024]</p>
+            <p>Building an end-to-end autonomous AI agent platform for hiring automation, data enrichment, and document processing. Contributing to backend pipelines and application layer using LMs.</p>
+          </div>
+          <div class="space-y-2">
+            <h3 class="font-medium">Research Intern - <a href="https://trustlab.iitb.ac.in/" class="text-gruvbox-light-accent dark:text-gruvbox-dark-accent hover:underline">Trust Lab, IIT Bombay</a></h3>
+            <p class="text-gruvbox-light-bg-lighter dark:text-gruvbox-dark-bg-lighter text-sm">[01-06-2024]</p>
+            <p>Collaborated on <strong>Domain Knowledge based Q/A for LLMs</strong>, optimizing and fine-tuning LLMs for open-ended medical question answering using DSPy.</p>
+          </div>
+          <div class="space-y-2">
+            <h3 class="font-medium">Software Engineer (AI/ML) - <a href="https://cupric.tech" class="text-gruvbox-light-accent dark:text-gruvbox-dark-accent hover:underline">Cupric</a></h3>
+            <p class="text-gruvbox-light-bg-lighter dark:text-gruvbox-dark-bg-lighter text-sm">[15-8-2024]</p>
+            <p>Building ML backend pipelines for a follow-up care tool in the medical domain.</p>
+          </div>
+        </div>
+      </div>
+    </Section>
+
+    {/* Current Work Section */}
+    <Section title="what i'm working on">
+      <ul class="list-disc pl-5 space-y-3">
+        <li>implementing papers and diving deep into foundational architectures</li>
+        <li>focussing more on backend development and LLMOps</li>
+        <li>building <a href="https://groundzeroai.netlify.app" class="text-gruvbox-light-accent dark:text-gruvbox-dark-accent hover:underline">groundzero.ai</a></li>
+        <li>creating AI/ML content and hosting technical discussions on <a href="https://www.youtube.com/@GroundZeroAI" class="text-gruvbox-light-accent dark:text-gruvbox-dark-accent hover:underline">GroundZeroAI</a></li>
+      </ul>
+    </Section>
+
+    {/* About Section */}
+    <Section title="what excites me">
+      <div class="prose prose-lg dark:prose-invert max-w-none">
+        <p>i love diving into <strong>architectures</strong> and understanding how things work under the hood. The underlying mathematics and intuitions fascinate me. I write extensively about ML, DL, CV, and NLP, focusing on making complex concepts intuitive and engaging.</p>
+        <p class="mt-4">When not coding, you might find me exploring AI agents or discussing geopolitics.</p>
+      </div>
+    </Section>
+
+    {/* Content Creation */}
+    <Section title="find me online">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        <div class="space-y-3">
+          <h3 class="font-medium">Writing & Discussions</h3>
+          <p class="text-sm text-gruvbox-light-bg-lighter dark:text-gruvbox-dark-bg-lighter">Follow my thoughts and insights about AI/ML, architectures, and tech on Twitter.</p>
+          <div class="flex items-center gap-2">
+            <a href="https://twitter.com/himanshustwts" class="text-gruvbox-light-accent dark:text-gruvbox-dark-accent hover:underline">@himanshustwts</a>
+          </div>
+        </div>
+        <div class="space-y-3">
+          <h3 class="font-medium">Video Content</h3>
+          <p class="text-sm text-gruvbox-light-bg-lighter dark:text-gruvbox-dark-bg-lighter">Watch technical discussions and AI/ML concept breakdowns on my YouTube channel.</p>
+          <div class="flex items-center gap-2">
+            <a href="https://www.youtube.com/@GroundZeroAI" class="text-gruvbox-light-accent dark:text-gruvbox-dark-accent hover:underline">GroundZeroAI</a>
+          </div>
+        </div>
+      </div>
+    </Section>
+
+    {/* Connect Section */}
+    <Section title="let's connect">
+      <p class="mb-4">Want to discuss AI, collaborate on projects, or just chat about tech? Feel free to reach out!</p>
+      <div class="flex flex-wrap gap-4">
+        <a href="mailto:himanshu.dubey8853@gmail.com" class="text-gruvbox-light-accent dark:text-gruvbox-dark-accent hover:underline">Email me</a>
+        <span class="text-gruvbox-light-bg-lighter dark:text-gruvbox-dark-bg-lighter">•</span>
+        <a href="https://calendly.com/hdubey261102/" class="text-gruvbox-light-accent dark:text-gruvbox-dark-accent hover:underline">Schedule a call</a>
+      </div>
+    </Section>
+
+    {/* Footer Note */}
+    <div class="text-sm text-gruvbox-light-bg-lighter dark:text-gruvbox-dark-bg-lighter">
+      <p>i've fixed slots as per my normal availability but you can always let me know if i'm available at other times.</p>
+      <p class="mt-2">(Feel free to DM me on X for quick chats!)</p>
+      <p class="text-lg font-medium mt-6">cyaa!</p>
+    </div>
+  </div>
 </Layout>
