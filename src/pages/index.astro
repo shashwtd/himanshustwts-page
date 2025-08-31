@@ -3,6 +3,28 @@ import Layout from '../layouts/Layout.astro';
 import Section from "../components/Section.astro";
 
 const title = "Welcome!";
+
+const experience = [
+  {
+	role: "Machine Learning Intern",
+	company: "bhindi.io",
+	date: "14-10-2024",
+	description: "Building an end-to-end autonomous AI agent platform for hiring automation, data enrichment, and document processing."
+  },
+  {
+	role: "Research Intern",
+	company: "Trust Lab, IIT Bombay",
+	date: "01-06-2024",
+	description: "Collaborated on Domain Knowledge based Q/A for LLMs, optimizing LLMs using DSPy."
+  },
+  {
+	role: "Software Engineer",
+	company: "Cupric",
+	date: "15-8-2024",
+	description: "Building ML backend pipelines for a follow-up care tool in the medical domain."
+  }
+];
+
 ---
 <Layout title={title}>
   <div class="space-y-16 max-w-3xl">
@@ -51,22 +73,17 @@ const title = "Welcome!";
         <p class="text-lg">
           Currently building and iterating at the intersection of AI and real-world challenges at <a href="https://bhindi.io" class="text-gruvbox-light-accent dark:text-gruvbox-dark-accent hover:underline">bhindi.io</a>, where we're developing your cursor for apps.
         </p>
-        <div class="space-y-4">
-          <div class="space-y-2">
-            <h3 class="font-medium">Machine Learning Intern</h3>
-            <p class="text-gruvbox-light-bg-lighter dark:text-gruvbox-dark-bg-lighter text-sm">[14-10-2024]</p>
-            <p>Building an end-to-end autonomous AI agent platform for hiring automation, data enrichment, and document processing. Contributing to backend pipelines and application layer using LMs.</p>
-          </div>
-          <div class="space-y-2">
-            <h3 class="font-medium">Research Intern - <a href="https://trustlab.iitb.ac.in/" class="text-gruvbox-light-accent dark:text-gruvbox-dark-accent hover:underline">Trust Lab, IIT Bombay</a></h3>
-            <p class="text-gruvbox-light-bg-lighter dark:text-gruvbox-dark-bg-lighter text-sm">[01-06-2024]</p>
-            <p>Collaborated on <strong>Domain Knowledge based Q/A for LLMs</strong>, optimizing and fine-tuning LLMs for open-ended medical question answering using DSPy.</p>
-          </div>
-          <div class="space-y-2">
-            <h3 class="font-medium">Software Engineer (AI/ML) - <a href="https://cupric.tech" class="text-gruvbox-light-accent dark:text-gruvbox-dark-accent hover:underline">Cupric</a></h3>
-            <p class="text-gruvbox-light-bg-lighter dark:text-gruvbox-dark-bg-lighter text-sm">[15-8-2024]</p>
-            <p>Building ML backend pipelines for a follow-up care tool in the medical domain.</p>
-          </div>
+        <div class="relative border-l border-gruvbox-light-bg-lighter dark:border-gruvbox-dark-bg-lighter ml-2">
+		{experience.map((exp, index) => (
+			<div class={`relative ml-6 ${index < experience.length - 1 ? 'mb-8' : ''}`}>
+				<div class="absolute w-3 h-[1px] bg-gruvbox-light-bg-lighter dark:bg-gruvbox-dark-bg-lighter -left-6 top-[0.8rem]"></div>
+				<div class="space-y-1">
+					<h3 class="font-medium">{exp.role} • {exp.company}</h3>
+					<p class="text-sm text-gruvbox-light-bg-lighter dark:text-gruvbox-dark-bg-lighter">{exp.date}</p>
+					<p class="mt-2">{exp.description}</p>
+				</div>
+			</div>
+		))}
         </div>
       </div>
     </Section>
