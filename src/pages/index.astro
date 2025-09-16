@@ -8,22 +8,28 @@ const title = "Himanshu — AI Researcher & SDE";
 
 const experience = [
   {
-	role: "Machine Learning Intern",
-	company: "bhindi.io",
-	date: "14-10-2024",
-	description: "Building an end-to-end autonomous AI agent platform for hiring automation, data enrichment, and document processing."
+    role: "Product & Growth",
+    company: "Bhindi AI",
+    date: "Mar 2025 - Present",
+    description: "Part of the founding team. We raised $4M in our pre-seed round. We're hiring!"
   },
   {
-	role: "Research Intern",
-	company: "Trust Lab, IIT Bombay",
-	date: "01-06-2024",
-	description: "Collaborated on Domain Knowledge based Q/A for LLMs, optimizing LLMs using DSPy."
+    role: "AI Research & Grants",
+    company: "Upsurge Labs",
+    date: "Feb 2025 - Present",
+    description: "Learning, building, and iterating at the intersection of AI and real-world challenges. We offer non-dilutive microgrants at grants.upsurge.io"
   },
   {
-	role: "Software Engineer",
-	company: "Cupric",
-	date: "15-8-2024",
-	description: "Building ML backend pipelines for a follow-up care tool in the medical domain."
+    role: "Machine Learning Engineer",
+    company: "SproutsAI",
+    date: "Oct 2024 - Feb 2025",
+    description: "Built end-to-end autonomous AI agent platform for hiring automation, data enrichment, and document processing."
+  },
+  {
+    role: "Research Intern",
+    company: "IITB Trust Lab",
+    date: "Jun 2024 - Aug 2024",
+    description: "Collaborated on 'Domain Knowledge based Q/A for LLMs', optimizing and fine-tuning LLMs for open-ended medical question answering."
   }
 ];
 
@@ -35,12 +41,12 @@ const experience = [
       <div>
         <h1 class="text-4xl font-medium mb-2">himanshu</h1>
         <p class="text-lg text-gruvbox-light/70 dark:text-gruvbox-dark/70">
-          cooking in da lab with <a href="https://bhindi.io" target="_blank" rel="noopener noreferrer" class="text-gruvbox-light-accent dark:text-gruvbox-dark-accent hover:opacity-80 transition-opacity font-medium">@bhindi<ExternalLinkIcon /></a>
+          building ai products at <a href="https://bhindi.io" target="_blank" rel="noopener noreferrer" class="text-gruvbox-light-accent dark:text-gruvbox-dark-accent hover:opacity-80 transition-opacity font-medium">@bhindi<ExternalLinkIcon /></a>
         </p>
       </div>
 
       <p class="text-lg max-w-[480px] leading-relaxed text-gruvbox-light/90 dark:text-gruvbox-dark/90">
-        nice to meet you!! i'm himanshu, just passed out my engineering course in IT. this is my little corner of the internet :)
+        nice to meet you!! i'm himanshu, working on ai products & research. this is my little corner of the internet :)
       </p>
 
       <div class="flex flex-wrap gap-6 text-sm">
@@ -74,20 +80,20 @@ const experience = [
     {/* Work Experience */}
     <Section title="what i do">
       <div class="space-y-6">
-        <p class="text-lg">
-          Currently building and iterating at the intersection of AI and real-world challenges at <a href="https://bhindi.io" target="_blank" rel="noopener noreferrer" class="text-gruvbox-light-accent dark:text-gruvbox-dark-accent hover:opacity-80 transition-opacity font-medium">bhindi.io<ExternalLinkIcon /></a>, where we're developing your cursor for apps.
+        <p>
+          I run <a href="https://www.youtube.com/@Ground_ZeroYT" target="_blank" rel="noopener noreferrer" class="text-gruvbox-light-accent dark:text-gruvbox-dark-accent hover:opacity-80 transition-opacity font-medium">Ground Zero<ExternalLinkIcon /></a>, where I break down ML papers and host <a href="/podcasts" class="text-gruvbox-light-accent dark:text-gruvbox-dark-accent hover:opacity-80 transition-opacity font-medium">conversations with interesting people</a> in AI. Currently part of the founding team at <a href="https://bhindi.io" target="_blank" rel="noopener noreferrer" class="text-gruvbox-light-accent dark:text-gruvbox-dark-accent hover:opacity-80 transition-opacity font-medium">bhindi.io<ExternalLinkIcon /></a> and exploring AI research at <a href="https://upsurge.io" target="_blank" rel="noopener noreferrer" class="text-gruvbox-light-accent dark:text-gruvbox-dark-accent hover:opacity-80 transition-opacity font-medium">Upsurge Labs<ExternalLinkIcon /></a>.
         </p>
-        <div class="relative border-l border-gruvbox-light/30 dark:border-gruvbox-dark/30 ml-2">
-		{experience.map((exp, index) => (
-			<div class={`relative ml-6 ${index < experience.length - 1 ? 'mb-8' : ''}`}>
-				<div class="absolute w-3 h-[1px] bg-gruvbox-light/30 dark:bg-gruvbox-dark/30 -left-6 top-[0.8rem]"></div>
-				<div class="space-y-1">
-					<h3 class="font-medium">{exp.role} • {exp.company}</h3>
-					<p class="text-sm text-gruvbox-light/70 dark:text-gruvbox-dark/70">{exp.date}</p>
-					<p class="mt-2">{exp.description}</p>
-				</div>
-			</div>
-		))}
+        <div class="relative border-l border-gruvbox-light/30 dark:border-gruvbox-dark/30 ml-2 pt-2">
+          {experience.map((exp, index) => (
+            <div class={`relative ml-6 ${index < experience.length - 1 ? 'mb-8' : ''}`}>
+              <div class="absolute w-3 h-[1px] bg-gruvbox-light/30 dark:bg-gruvbox-dark/30 -left-6 top-[0.8rem]"></div>
+              <div class="space-y-1">
+                <h3 class="font-medium">{exp.role} • {exp.company}</h3>
+                <p class="text-sm text-gruvbox-light/70 dark:text-gruvbox-dark/70">{exp.date}</p>
+                <p class="mt-2">{exp.description}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </Section>
