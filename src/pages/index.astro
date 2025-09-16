@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Section from "../components/Section.astro";
 import ExternalLinkIcon from "../components/ExternalLinkIcon.astro";
+import Newsletter from "../components/Newsletter.astro";
 
 const title = "Himanshu — AI Researcher & SDE";
 
@@ -91,20 +92,10 @@ const experience = [
       </div>
     </Section>
 
-    {/* Current Work Section */}
-    <Section title="what i'm working on">
-      <ul class="list-disc pl-5 space-y-3">
-        <li>implementing papers and diving deep into foundational architectures</li>
-        <li>focussing more on backend development and LLMOps</li>
-        <li>building <a href="https://groundzeroai.netlify.app" target="_blank" rel="noopener noreferrer" class="text-gruvbox-light-accent dark:text-gruvbox-dark-accent hover:opacity-80 transition-opacity font-medium">groundzero.ai<ExternalLinkIcon /></a></li>
-        <li>creating AI/ML content and hosting technical discussions on <a href="https://www.youtube.com/@Ground_ZeroYT" target="_blank" rel="noopener noreferrer" class="text-gruvbox-light-accent dark:text-gruvbox-dark-accent hover:opacity-80 transition-opacity font-medium">Ground Zero<ExternalLinkIcon /></a></li>
-      </ul>
-    </Section>
-
     {/* About Section */}
     <Section title="what excites me">
       <div class="prose prose-lg dark:prose-invert max-w-none">
-        <p>i love diving into <strong>architectures</strong> and understanding how things work under the hood. The underlying mathematics and intuitions fascinate me. I write extensively about ML, DL, CV, and NLP, focusing on making complex concepts intuitive and engaging.</p>
+        <p>i love diving into <strong>architectures</strong> and understanding how things work under the hood. The underlying mathematics and intuitions fascinate me. I spend my time implementing papers and exploring foundational architectures, creating educational content through <a href="https://www.youtube.com/@Ground_ZeroYT" target="_blank" rel="noopener noreferrer" class="text-gruvbox-light-accent dark:text-gruvbox-dark-accent hover:opacity-80 transition-opacity font-medium">Ground Zero<ExternalLinkIcon /></a>.</p>
         <p class="mt-4">When not coding, you might find me exploring AI agents or discussing geopolitics.</p>
       </div>
     </Section>
@@ -141,6 +132,11 @@ const experience = [
           </div>
         </div>
       </div>
+    </Section>
+
+    {/* Newsletter Section */}
+    <Section title="stay in the loop">
+      <Newsletter />
     </Section>
 
     {/* Connect Section */}
