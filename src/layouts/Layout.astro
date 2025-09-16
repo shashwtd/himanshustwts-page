@@ -57,7 +57,9 @@ const { title, wide = false } = Astro.props;
   <body
     class="flex flex-col min-h-screen items-center bg-gruvbox-light-bg text-gruvbox-light dark:bg-gruvbox-dark-bg dark:text-gruvbox-dark"
   >
-    <div class="w-full sm:w-4/5 py-6 sm:py-8 md:py-12 lg:w-3/5 px-6 md:w-2/3 max-w-4xl">
+    <div class={`fixed inset-y-0 left-1/2 w-px bg-gruvbox-light/[0.08] dark:bg-gruvbox-dark/[0.08] transition-transform duration-300 ${wide ? '-translate-x-[448px]' : '-translate-x-[448px]'}`}></div>
+    <div class={`fixed inset-y-0 left-1/2 w-px bg-gruvbox-light/[0.08] dark:bg-gruvbox-dark/[0.08] transition-transform duration-300 ${wide ? 'translate-x-[447px]' : 'translate-x-[384px]'}`}></div>
+    <div class="w-full sm:w-4/5 py-6 sm:py-8 md:py-12 lg:w-3/5 px-6 md:w-2/3 max-w-4xl relative">
       <Header wide={wide} />
       <main class="break-words prose prose-lg dark:prose-invert max-w-none">
         <div class="not-prose">
