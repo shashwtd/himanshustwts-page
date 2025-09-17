@@ -8,9 +8,10 @@
       "url": "https://www.youtube.com/watch?v=tnfFn-uQ6WA",
       "views": 1272,
       "uploaded_time": "2025-09-03T12:23:34",
-      "duration": "1 Hours, 41 Minutes, 52 Seconds",
+      "duration": "1.7 hours",
       "duration_seconds": 6112,
-      "channel_name": "GroundZero YT"
+      "channel_name": "GroundZero YT",
+      "pinned": true
     },
     {
       "title": "LLMs for Everyone | Pre-training, Fine-Tuning, Scaling RL, Open Source | Daniel Han, Unsloth",
@@ -19,7 +20,7 @@
       "url": "https://www.youtube.com/watch?v=v9c00Ty5Z7U",
       "views": 2288,
       "uploaded_time": "2025-08-16T12:27:33",
-      "duration": "1 Hours, 24 Minutes, 18 Seconds",
+      "duration": "1.4 hours",
       "duration_seconds": 5058,
       "channel_name": "GroundZero YT"
     },
@@ -30,9 +31,10 @@
       "url": "https://www.youtube.com/watch?v=jXMI62nqu58",
       "views": 15741,
       "uploaded_time": "2025-07-19T10:29:00",
-      "duration": "1 Hours, 15 Minutes, 47 Seconds",
+      "duration": "1.25 hours",
       "duration_seconds": 4547,
-      "channel_name": "GroundZero YT"
+      "channel_name": "GroundZero YT",
+      "pinned": true
     },
     {
       "title": "RL, Reasoning, Reward Hacking, AI Timeline and Post AGI | Will Brown (Research at Prime Intellect)",
@@ -41,7 +43,7 @@
       "url": "https://www.youtube.com/watch?v=Jxdbq7vCYxc",
       "views": 3582,
       "uploaded_time": "2025-06-22T07:39:17",
-      "duration": "1 Hours, 43 Minutes, 25 Seconds",
+      "duration": "1.72 hours",
       "duration_seconds": 6205,
       "channel_name": "GroundZero YT"
     },
@@ -52,7 +54,7 @@
       "url": "https://www.youtube.com/watch?v=Wnn4wrIht2s",
       "views": 3442,
       "uploaded_time": "2025-06-01T09:30:06",
-      "duration": "2 Hours, 18 Minutes, 55 Seconds",
+      "duration": "2.3 hours",
       "duration_seconds": 8335,
       "channel_name": "GroundZero YT"
     },
@@ -63,7 +65,7 @@
       "url": "https://www.youtube.com/watch?v=iMrg8Px_aaY",
       "views": 1768,
       "uploaded_time": "2025-01-12T09:14:33",
-      "duration": "1 Hours, 30 Minutes, 52 Seconds",
+      "duration": "1.5 hours",
       "duration_seconds": 5452,
       "channel_name": "GroundZero YT"
     }
